@@ -40,7 +40,7 @@ def dimsey_speak(audio_string):
 
 def response(voice_data):
     if 'what is your name' in voice_data:   #  PROMPT NAME
-        dimsey_speak(f'My name is DAN')
+        dimsey_speak(f'My name is DIMSEY')
 
 
     if 'what time is it' in voice_data or 'what is the time' in voice_data:   # PROMPT TIME
