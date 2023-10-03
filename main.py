@@ -23,6 +23,7 @@ def record_audio(ask = False):
             # dimsey_speak(voice_data)
         except sr.UnknownValueError:
             dimsey_speak('sorry would you like to repeat?  Please')
+            dimsey_speak('How can i help you?')
         except sr.RequestError:
             dimsey_speak('Sorry my speech  is down')
         return voice_data
@@ -51,19 +52,35 @@ def response(voice_data):
         search = record_audio('what do you want to search for?')
         url = 'http://google.com/search?q=' + search
         webbrowser.get().open(url)
-        dimsey_speak ('Here is what i found for' + search)
+        dimsey_speak ('Here is what i found for ' + search)
 
 
     if 'find location' in voice_data:   # SEARCH FOR location
         location = record_audio('What is the location?')
         url = 'http://google.nl/maps/place/' + location + '/&amp;'
         webbrowser.get().open(url)
-        dimsey_speak ('Here is the location of' + location)
+        dimsey_speak ('Here is the location of: ' + location)
+
+
+    if 'weather' in voice_data:   # SEARCH FOR weather
+        temp = record_audio('What location?')
+        url = f'https://www.google.com/search?q=weather ' + temp 
+        webbrowser.get().open(url)
+        dimsey_speak ('Here is the weather of ' +  temp )
+
+
+    if 'will you marry me' in voice_data:   # marriage proposal
+        music = record_audio('Are you single?')
+        if music.lower() == 'yes':
+            dimsey_speak (f'yes i\'ll marry you')
+        else:
+            dimsey_speak (f'no i won\'t ')
+
 
     if 'exit' in voice_data:    # Exit the voice data loop
         exit()
 
-time.sleep(1)       #CONTINUE THE LOOP AFTER THE PROMPTING...WE IMPORT A MODULE CALLED TIME TO DELAY IT BY A SECOND
+time.sleep(.5)       #CONTINUE THE LOOP AFTER THE PROMPTING...WE IMPORT A MODULE CALLED TIME TO DELAY IT BY A SECOND
 dimsey_speak('How can i help you?')
 while 1:
     voice_data = record_audio()
